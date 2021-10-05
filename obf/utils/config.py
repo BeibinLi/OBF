@@ -1,7 +1,7 @@
 """Configuration utils for loading and checking config json files."""
 import json
-import os
 import math
+import os
 
 
 def _check_config(config):
@@ -28,7 +28,6 @@ def _check_config(config):
     experiment = config["experiment"]
 
     assert experiment["learning rate"] > 0
-    # TODO: add other checks
 
 
 def _process_fixation_identification_setting(setting):

@@ -160,8 +160,6 @@ class Trainer:
                    os.path.join(self.logdir, "cl_%s.pt" % self.logname))
         torch.save(self.rc_decoder.module,
                    os.path.join(self.logdir, "rc_%s.pt" % self.logname))
-        # TODO: call run for training and validation
-    return
 
   def _optimize_models(self, loss, models):
     assert torch.sum(torch.isnan(loss)) == 0
@@ -281,7 +279,6 @@ class Trainer:
         e2 = encoder(x2)
 
         if self.backbone_type in ["rnn", "gru"]:
-          # Transpose for RNNs
           pass
         elif self.backbone_type == "lstm":
           # Concat to (batch_size, num_layers * 2, num_channels)
@@ -365,8 +362,7 @@ class Trainer:
 
     if "fi" in self.tasks:
       print("Confusion Matrix: Fixation Identification")
-      print(metrics.confusion_matrix(fi_gt_np, fi_pred_np, normalize="true")
-           )  # F1-score, regarding saccade as Positive (rare case)
+      print(metrics.confusion_matrix(fi_gt_np, fi_pred_np, normalize="true"))
 
     if mode == "train":
       self.scheduler.step()

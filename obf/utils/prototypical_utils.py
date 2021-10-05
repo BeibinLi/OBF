@@ -1,11 +1,12 @@
 # coding=utf-8
 # https://github.com/orobix/Prototypical-Networks-for-Few-shot-Learning-PyTorch/blob/master/src/prototypical_loss.py
-import torch
+import pdb
+
 import numpy as np
+import sklearn.metrics
+import torch
 from torch.nn import functional as F
 from torch.nn.modules import Module
-import sklearn.metrics
-import pdb
 
 
 class PrototypicalBatchSampler(object):
@@ -156,7 +157,6 @@ def prototypical_loss(inputs, targets, n_support):
 
   loss_val = -log_p_y.gather(2, targets_inds).squeeze().view(-1).mean()
   # loss_val = -probs.gather(2, targets_inds).squeeze().view(-1).mean()
-  # # TODO: remove. Here add the distance to the correct class
   # loss_val += dists.view(n_classes, n_query, -1).gather(2, targets_inds).mean()
 
   _, y_hat = log_p_y.max(2)
