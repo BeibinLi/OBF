@@ -1,0 +1,47 @@
+{
+    "pretrain data setting": {
+        "use augmentation": false,
+        "batch size": 64,
+        "datasets": [
+            {
+                "path": "../gaze_data/coutrot/clean_data_1/",
+                "signal length": 600
+            },
+            {
+                "path": "../gaze_data/coutrot/clean_data_1/",
+                "signal length": 1200
+            },
+            {
+                "path": "../gaze_data/moscow/clean_data/",
+                "signal length": 1000
+            }
+        ]
+    },
+    "mit dataset": "../gaze_data/FixaTons/MIT1003/clean_data/",
+    "fixation identification setting": {
+        "velocity threshold (d/s)": 100,
+        "min fixation length (ms)": 200
+    },
+    "experiment": {
+        "epochs": 500,
+        "save epochs": 10,
+        "input seq length": 500,
+        "recon seq length": 600,
+        "pc seq length": 30,
+        "hidden dim": 128,
+        "number of layers": 2,
+        "backbone type": "gru",
+        "use conv": true,
+        "grad norm": 0.5,
+        "learning rate": 0.001,
+        "debug": false,
+        "cuda": true,
+        "tasks": [
+            "pc",
+            "cl",
+            "fi",
+            "rc"
+        ],
+        "outdir": "./pre_weights"
+    }
+}
